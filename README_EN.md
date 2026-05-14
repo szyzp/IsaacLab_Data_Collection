@@ -1,6 +1,6 @@
 # Teleoperation Data Collection using Piper in IsaacLab Environment
 
-This project implements the **cube stacking (Stack) task for the Piper robotic arm** within the [IsaacLab](https://github.com/isaac-sim/IsaacLab) environment, and supports the collection and playback of human demonstration data via teleoperation. This project is built as an External Project of IsaacLab.
+This project implements the **cube stacking task for the Piper robotic arm** within the [IsaacLab](https://github.com/isaac-sim/IsaacLab) environment, and supports the collection and playback of human demonstration data via teleoperation. This project is built as an external project of IsaacLab.
 
 ![Teleop Demonstration](./assets/teleop.gif)
 
@@ -15,6 +15,7 @@ This project implements the **cube stacking (Stack) task for the Piper robotic a
 ``` bash
 git clone https://github.com/szyzp/agx_teleop.git
 cd agx_teleop
+conda activate isaaclab
 python -m pip install -e source/agx_teleop
 ```
 

@@ -1,6 +1,6 @@
 # 在 IsaacLab 环境中使用 Piper 进行遥操作数据采集
 
-本项目在 [IsaacLab](https://github.com/isaac-sim/IsaacLab) 环境中实现了 **Piper 机械臂的方块堆叠 (Stack) 任务**，并支持通过遥操作进行人类演示数据的采集与回放。该项目作为 IsaacLab 的外部项目 (External Project) 构建。
+本项目在 [IsaacLab](https://github.com/isaac-sim/IsaacLab) 环境中实现了 **Piper 机械臂的方块堆叠任务**，并支持通过遥操作进行人类演示数据的采集与回放。该项目作为 IsaacLab 的外部项目构建。
 
 ![Teleop Demonstration](./assets/teleop.gif)
 
@@ -15,6 +15,7 @@
 ``` bash
 git clone https://github.com/szyzp/agx_teleop.git
 cd agx_teleop
+conda activate isaaclab
 python -m pip install -e source/agx_teleop
 ```
 
