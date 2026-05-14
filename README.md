@@ -65,3 +65,8 @@ python scripts/tools/replay_demos.py \
 > **回放时的快捷键**：
 > - 暂停回放: `B`
 > - 恢复回放: `N`
+
+
+## 参考项目
+1、[IsaacLab官方教程](https://isaac-sim.github.io/IsaacLab/main/index.html)  
+2、[IsaacLab](https://github.com/isaac-sim/IsaacLab)

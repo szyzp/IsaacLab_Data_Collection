@@ -65,3 +65,7 @@ If you use `--teleop_device keyboard` when starting the recording, please use th
 > **Shortcuts during playback**:
 > - Pause playback: `B`
 > - Resume playback: `N`
+
+## Reference Projects
+1、[IsaacLab Official Tutorials](https://isaac-sim.github.io/IsaacLab/main/index.html)  
+2、[IsaacLab](https://github.com/isaac-sim/IsaacLab)

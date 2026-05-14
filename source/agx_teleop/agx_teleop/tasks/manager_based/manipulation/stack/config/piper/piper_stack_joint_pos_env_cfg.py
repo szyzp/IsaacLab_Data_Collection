@@ -161,14 +161,14 @@ class PiperCubeStackEnvCfg(StackEnvCfg):
                     prim_path="{ENV_REGEX_NS}/Robot/gripper_link1",
                     name="tool_rightfinger",
                     offset=OffsetCfg(
-                        pos=(0.0, 0.0, 0.0),  # gripper_link1 到手指尖端的距离。意义存疑，值也存疑？？
+                        pos=(0.0, 0.0, 0.0),
                     ),
                 ),
                 FrameTransformerCfg.FrameCfg(
                     prim_path="{ENV_REGEX_NS}/Robot/gripper_link2",
                     name="tool_leftfinger",
                     offset=OffsetCfg(
-                        pos=(0.0, 0.0, 0.0),  # gripper_link2 到手指尖端的距离。意义存疑，值也存疑？？
+                        pos=(0.0, 0.0, 0.0),
                     ),
                 ),
             ],
