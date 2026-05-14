@@ -13,8 +13,8 @@ This project implements the **cube stacking task for the Piper robotic arm** wit
 
 ### 2. Install the Project
 ``` bash
-git clone https://github.com/szyzp/agx_teleop.git
-cd agx_teleop
+git clone https://github.com/szyzp/IsaacLab_Data_Collection.git
+cd IsaacLab_Data_Collection
 conda activate isaaclab
 python -m pip install -e source/agx_teleop
 ```
