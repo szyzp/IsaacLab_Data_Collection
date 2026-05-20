@@ -2,7 +2,7 @@
 
 本项目在 [IsaacLab](https://github.com/isaac-sim/IsaacLab) 环境中实现了 **Piper 机械臂的方块堆叠任务**，并支持通过遥操作进行人类演示数据的采集与回放。该项目作为 IsaacLab 的外部项目构建。
 
-![Teleop Demonstration](./assets/teleop.gif)
+![Teleop Demonstration](./assets/piper_teleop.gif)
 
 
 ## 安装
