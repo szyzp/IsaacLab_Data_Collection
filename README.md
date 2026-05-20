@@ -1,8 +1,8 @@
-# 在 IsaacLab 环境中使用 Piper 进行遥操作数据采集
+# 在 IsaacLab 环境中使用Piper和Nero进行遥操作数据采集
 
-本项目在 [IsaacLab](https://github.com/isaac-sim/IsaacLab) 环境中实现了 **Piper 机械臂的方块堆叠任务**，并支持通过遥操作进行人类演示数据的采集与回放。该项目作为 IsaacLab 的外部项目构建。
+本项目在 [IsaacLab](https://github.com/isaac-sim/IsaacLab) 环境中实现了 **Piper和Nero机械臂的方块堆叠任务**，支持通过遥操作进行人类演示数据的采集与回放，并提供自动化采集数据的脚本用于高效采集演示数据。该项目作为 IsaacLab 的外部项目构建。
 
-![Teleop Demonstration](./assets/piper_teleop.gif)
+![Teleop Demonstration](./assets/nero_ik.gif)
 
 
 ## 安装
@@ -26,8 +26,11 @@ python -m pip install -e source/agx_teleop
 mkdir -p datasets
 ```
 
-### 录制演示数据
-使用键盘作为输入设备，录制 10 条成功的演示数据：
+### 手动采集演示数据
+使用键盘作为输入设备，手动录制10条成功的演示数据。  
+可选任务环境：
+- Piper机械臂任务环境：`Isaac-Stack-Cube-Piper-IK-Rel-v0`
+- Nero机械臂任务环境：`Isaac-Stack-Cube-Nero-IK-Rel-v0`
 ```bash
 python scripts/tools/record_demos.py \
     --task Isaac-Stack-Cube-Piper-IK-Rel-v0 \
@@ -38,8 +41,18 @@ python scripts/tools/record_demos.py \
 ```
 *(可选遥操作设备 `--teleop_device`: `keyboard`, `spacemouse`, `handtracking`)*
 
+### 自动采集演示数据
+``` bash
+python scripts/tools/record_ik_stack.py \
+  --task Isaac-Stack-Cube-Piper-IK-Rel-v0 \
+  --device cuda \
+  --dataset_file ./datasets/ik_dataset.hdf5 \
+  --num_demos 10
+```
+*(可选`--headless`参数在无可视化服务器自动采集演示数据)*
+
 ### 回放演示数据
-回放并验证刚才收集的数据集：
+回放并验证刚才收集的`.hdf5`数据集。
 ```bash
 python scripts/tools/replay_demos.py \
     --task Isaac-Stack-Cube-Piper-IK-Rel-v0 \
