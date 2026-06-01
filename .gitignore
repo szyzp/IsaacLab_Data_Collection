@@ -17,6 +17,9 @@ No USD files allowed in the repo
 !source/agx_teleop/agx_description/agx_arm_urdf/piper/usd/**/*.usd
 !source/agx_teleop/agx_description/agx_arm_urdf/piper/usd/**/*.usda
 !source/agx_teleop/agx_description/agx_arm_urdf/piper/usd/**/*.usdc
+!source/agx_teleop/agx_description/agx_arm_urdf/nero/usd/**/*.usd
+!source/agx_teleop/agx_description/agx_arm_urdf/nero/usd/**/*.usda
+!source/agx_teleop/agx_description/agx_arm_urdf/nero/usd/**/*.usdc
 
 # Python
 .DS_Store
