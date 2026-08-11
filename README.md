@@ -2,22 +2,66 @@
 
 本项目在 [IsaacLab](https://github.com/isaac-sim/IsaacLab) 环境中实现了 **Piper和Nero机械臂的方块堆叠任务**，支持通过遥操作进行人类演示数据的采集与回放，并提供自动化采集数据的脚本用于高效采集演示数据。该项目作为 IsaacLab 的外部项目构建。
 
+[![English](https://img.shields.io/badge/lang-English-blue.svg)](README_EN.md)
+[![简体中文](https://img.shields.io/badge/语言-简体中文-red.svg)](README.md)
+
 ![Teleop Demonstration](./assets/nero_ik.gif)
 
 
-## 安装
+## 环境配置
 
-### 1. 前置要求
-- 已安装并配置好 Isaac Sim 和 IsaacLab。
-- IsaacLab 安装对应的名为 `isaaclab` 的 Conda 虚拟环境。
+### 1. 安装
+- Ubuntu 22.04
+- Python 3.11
+- Torch 2.7.0
+- Cuda 12.8
+- IsaacLab v2.3.2
+- IsaacSim v5.1.0
 
-### 2. 安装项目
+下面是Ubuntu 22.04系统的依赖安装：
 ``` bash
+conda create -n isaaclab python=3.11 -y
+conda activate isaaclab
+pip install --upgrade pip
+
+pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu128
+pip install "isaacsim[all,extscache]==5.1.0" --extra-index-url https://pypi.nvidia.com
+isaacsim	# 验证IsaacSim的安装
+
+cd path/to/IsaacLab_path  # 修改为你的IsaacLab安装路径
+git clone -b v2.3.2 https://github.com/isaac-sim/IsaacLab.git
+sudo apt install cmake build-essential
+cd IsaacLab
+./isaaclab.sh --install robomimic
+python scripts/tutorials/00_sim/create_empty.py	 # 验证IsaacLab的安装
+
+cd path/to/IsaacLab_Data_Collection_paht  # 修改为你的数据采集代码安装路径
 git clone https://github.com/szyzp/IsaacLab_Data_Collection.git
 cd IsaacLab_Data_Collection
-conda activate isaaclab
 python -m pip install -e source/agx_teleop
 ```
+
+### 2. 安装可能出现的问题
+#### 验证IsaacLab安装时报错
+- 报错内容为：`ModuleNotFoundError: No module named 'isaaclab'`
+- 使用`conda list isaaclab`命令查看是否有安装框架，但是没有isaaclab子包，输出为：
+  ``` bash
+  # Name                     Version          Build            Channel
+  isaaclab-assets            0.2.4            pypi_0           pypi
+  isaaclab-contrib           0.0.2            pypi_0           pypi
+  isaaclab-mimic             1.0.16           pypi_0           pypi
+  isaaclab-rl                0.4.7            pypi_0           pypi
+  isaaclab-tasks             0.11.12          pypi_0           pypi
+  ```
+- 解决方法：
+  ``` bash
+  grep -n flatdict source/isaaclab/setup.py	  # 输出 45:    "flatdict==4.0.1",
+  sed -i 's/flatdict==4\.0\.1/flatdict==4.1.0/' source/isaaclab/setup.py	# 修改为flatdict==4.1.0
+  grep -n flatdict source/isaaclab/setup.py	  # 查看是否修改成功
+  ./isaaclab.sh --install robomimic	          # 重新执行安装
+  conda list isaaclab	                        # 检查是否有isaaclab
+  python scripts/tutorials/00_sim/create_empty.py	 # 重新验证IsaacLab的安装
+  ```
 
 ## 使用指南
 

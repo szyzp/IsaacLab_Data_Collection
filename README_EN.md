@@ -2,22 +2,66 @@
 
 This project implements a **cube-stacking task for the Piper and Nero robotic arms** in the [IsaacLab](https://github.com/isaac-sim/IsaacLab) environment. It supports the collection and replay of human demonstration data through teleoperation, and also provides an automated data collection script for efficiently gathering demonstration data. This project is built as an external project for IsaacLab.
 
+[![English](https://img.shields.io/badge/lang-English-blue.svg)](README_EN.md)
+[![简体中文](https://img.shields.io/badge/语言-简体中文-red.svg)](README.md)
+
 ![Teleop Demonstration](./assets/nero_ik.gif)
 
 
-## Installation
+## Environment Setup
 
-### 1. Prerequisites
-- Isaac Sim and IsaacLab have been installed and properly configured.
-- The Conda virtual environment named `isaaclab` corresponding to the IsaacLab installation is available.
+### 1. Installation
+- Ubuntu 22.04
+- Python 3.11
+- Torch 2.7.0
+- Cuda 12.8
+- IsaacLab v2.3.2
+- IsaacSim v5.1.0
 
-### 2. Install the Project
-```bash
+The following commands install the dependencies on Ubuntu 22.04:
+``` bash
+conda create -n isaaclab python=3.11 -y
+conda activate isaaclab
+pip install --upgrade pip
+
+pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu128
+pip install "isaacsim[all,extscache]==5.1.0" --extra-index-url https://pypi.nvidia.com
+isaacsim	# Verify the IsaacSim installation
+
+cd path/to/IsaacLab_path  # Change this to your IsaacLab installation path
+git clone -b v2.3.2 https://github.com/isaac-sim/IsaacLab.git
+sudo apt install cmake build-essential
+cd IsaacLab
+./isaaclab.sh --install robomimic
+python scripts/tutorials/00_sim/create_empty.py	 # Verify the IsaacLab installation
+
+cd path/to/IsaacLab_Data_Collection_path  # Change this to your data collection code installation path
 git clone https://github.com/szyzp/IsaacLab_Data_Collection.git
 cd IsaacLab_Data_Collection
-conda activate isaaclab
 python -m pip install -e source/agx_teleop
 ```
+
+### 2. Possible Installation Issues
+#### Error when verifying the IsaacLab installation
+- Error message: `ModuleNotFoundError: No module named 'isaaclab'`
+- Use `conda list isaaclab` to check whether the framework is installed. If the `isaaclab` subpackage is missing, the output is:
+  ``` bash
+  # Name                     Version          Build            Channel
+  isaaclab-assets            0.2.4            pypi_0           pypi
+  isaaclab-contrib           0.0.2            pypi_0           pypi
+  isaaclab-mimic             1.0.16           pypi_0           pypi
+  isaaclab-rl                0.4.7            pypi_0           pypi
+  isaaclab-tasks             0.11.12          pypi_0           pypi
+  ```
+- Solution:
+  ``` bash
+  grep -n flatdict source/isaaclab/setup.py	  # Output 45:    "flatdict==4.0.1",
+  sed -i 's/flatdict==4\.0\.1/flatdict==4.1.0/' source/isaaclab/setup.py	# Change it to flatdict==4.1.0
+  grep -n flatdict source/isaaclab/setup.py	  # Check whether the change succeeded
+  ./isaaclab.sh --install robomimic	          # Run the installation again
+  conda list isaaclab	                        # Check whether isaaclab exists
+  python scripts/tutorials/00_sim/create_empty.py	 # Verify the IsaacLab installation again
+  ```
 
 ## Usage Guide
 
